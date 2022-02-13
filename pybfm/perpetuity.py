@@ -19,5 +19,11 @@ def perpetuity_present_value(
   -------
   float:
       Present value of perpetuity
+      
+  Example
+  -------
+  >>> pv = perpetuity_present_value(5, 0.15)
+  >>> round(pv, 2)
+  33.33
   """
   return continuous_cash_payment / interest_rate
