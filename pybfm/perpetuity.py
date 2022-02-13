@@ -1,4 +1,4 @@
-"""Module to calculate Present Value of Perpetuity Formula
+"""Module to calculate Present Value of Perpetuity
 """
 
 def perpetuity_present_value(
@@ -27,3 +27,7 @@ def perpetuity_present_value(
   33.33
   """
   return continuous_cash_payment / interest_rate
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod(verbose=True)
