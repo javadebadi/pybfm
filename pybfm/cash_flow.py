@@ -22,6 +22,7 @@ class AnualCashFlowItem:
         -------
         >>> ci = AnualCashFlowItem(0, -1000, 'operating cost', 'perpetuity')
         >>> print(ci)
+        0 ----------   -1000 ---------- operating cost            perpetuity
         """
         self.year = year
         self.cf = cf
