@@ -1,6 +1,5 @@
 """A module to calculate cash flow
 """
-from dataclasses import dataclass
 
 def compound_future(present_value, interest_rate, n_years):
     return present_value * (1 + interest_rate) ** n_years
@@ -8,13 +7,63 @@ def compound_future(present_value, interest_rate, n_years):
 def compund_present(future_value, interest_rate, n_years):
     return future_value / (1 + interest_rate) ** n_years
 
-@dataclass(frozen=True)
-class AnnualCashFlowItem:
 
-    year : int
-    cf : float
-    event : str
-    kind : str
+class AnualCashFlowItem:
+
+    def __init__(
+        self,
+        year: int,
+        cf: float,
+        event: str = None,
+        kind: str = None,
+        ) -> None:
+        """
+        Example
+        -------
+        >>> ci = AnualCashFlowItem(0, -1000, 'operating cost', 'perpetuity')
+        >>> print(ci)
+        """
+        self.year = year
+        self.cf = cf
+        self.event = event
+        self.kind = kind
+
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, year: int):
+        assert year >= 0 and type(year) == int
+        self._year = year
+
+    @property
+    def cf(self):
+        return self._cf
+
+    @cf.setter
+    def cf(self, cf: float):
+        assert type(cf) == float or type(cf) == int
+        self._cf = cf
+
+    @property
+    def kind(self):
+        return self._kind
+
+    @kind.setter
+    def kind(self, kind: str):
+        assert kind in (None, 'perpetuity')
+        self._kind = kind
+
+    def __str__(self) -> str:
+        s = ""
+        s += (f"{self.year} " + "-"*10).ljust(10) + " "
+        s += str(self.cf).rjust(len(str(self.cf)) + 2)
+        if self.event:
+            s += " " + ("-"*10 + " " + self.event).rjust(25)
+        if self.kind:
+            s += " " + (" "*10 + " " + self.kind).rjust(10)
+        return s
 
 class AnnualCashFlow:
     """
