@@ -18,7 +18,7 @@ def generate_discounted_cash_formula(year, cf, kind=None):
 
 class IRR:
     
-    def __init__(self, years, cfs, kinds=None):
+    def __init__(self, years, cfs, kinds=None, opportunity_cost=None):
         if kinds is None:
             kinds = [None]*len(years)
         assert len(years) == len(cfs) and len(cfs) == len(kinds)
@@ -27,12 +27,17 @@ class IRR:
         self._kinds = kinds
         self._formula = None
         self._formula_string = None
+        self._opportunity_cost = opportunity_cost
         self._formula_tuple = self._process()
         
     @property
     def years(self):
         return self._years
     
+    @property
+    def opportunity_cost(self):
+        return self._opportunity_cost
+
     @property
     def cfs(self):
         return self._cfs
@@ -112,9 +117,10 @@ class IRR:
         xs, ys = self.get_yield_curve(min_r=min_r, max_r=max_r, points=points)
         if x_in_percentage:
             xs = [100 * x for x in xs]
-            xlabel = x_label + " (%)"
+            x_label = x_label + " (%)"
         fig, ax = plt.subplots(figsize=figsize)
         _ = ax.plot(xs, ys, label=plot_label, color=color)
+        _ = ax.set_title(title)
         _ = ax.set_ylabel(y_label)
         _ = ax.set_xlabel(x_label)
         if grid is True:
