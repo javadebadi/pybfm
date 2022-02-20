@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import fsolve
-from data_models import FormulaTuple
+from pybfm.data_models import FormulaTuple
 
 
 def generate_discounted_cash_formula(year, cf, kind=None):
@@ -95,10 +95,28 @@ class IRR:
         ys = self.formula(xs)
         return xs.tolist(), ys.tolist()
     
-    def plot(self, min_r=0, max_r=1, points=100, figsize=(10,5), title='Yield Curve', color='blue'):
+    def plot(
+        self,
+        min_r=0,
+        max_r=1,
+        points=100,
+        figsize=(10,5),
+        title='Yield Curve',
+        plot_label='Yield',
+        y_label='NPV',
+        x_label='Return Rate',
+        color='blue',
+        x_in_percentage=True,
+        grid=True,
+        ):
         xs, ys = self.get_yield_curve(min_r=min_r, max_r=max_r, points=points)
+        if x_in_percentage:
+            xs = [100 * x for x in xs]
+            xlabel = x_label + " (%)"
         fig, ax = plt.subplots(figsize=figsize)
-        _ = ax.plot(xs, ys, label="Yield", color=color)
-        _ = ax.set_ylabel("NPV")
-        _ = ax.grid()
+        _ = ax.plot(xs, ys, label=plot_label, color=color)
+        _ = ax.set_ylabel(y_label)
+        _ = ax.set_xlabel(x_label)
+        if grid is True:
+            _ = ax.grid()
         return fig, ax
