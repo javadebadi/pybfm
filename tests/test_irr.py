@@ -55,3 +55,37 @@ class TestIRR(TestCase):
         for index in range(len(xs)):
             self.assertAlmostEqual(xs[index], xs_correct[index], 3)
             self.assertAlmostEqual(ys[index], ys_correct[index], 3)
+
+    def test_find_mirr(self):
+        project = IRR(
+            years=[0, 1, 2],
+            cfs=[-1000, 1000, 1000],
+            kinds=None,
+            opportunity_cost=0.15,
+        )
+        self.assertAlmostEqual(project.find(), 0.618, 3)
+        self.assertAlmostEqual(project.find_mirr(), 0.466, 3)
+
+    def test_mirr_could_lead_to_different_decision_than_irr(self):
+        project_1 = IRR(
+            years=[0, 1, 2, 3],
+            cfs=[-1, 0.5, 0.5, 0.5],
+            kinds=None,
+            opportunity_cost=0.1,
+        )
+        project_1_irr = project_1.find()
+        project_1_mirr = project_1.find_mirr()
+        self.assertAlmostEqual(project_1_irr, 0.234, 3)
+        self.assertAlmostEqual(project_1_mirr, 0.183, 3)
+        project_2 = IRR(
+            years=[0, 1, 2, 3],
+            cfs=[-1, 1.1, 0.1, 0.16],
+            kinds=None,
+            opportunity_cost=0.1,
+        )
+        project_2_irr = project_2.find()
+        project_2_mirr = project_2.find_mirr()
+        self.assertAlmostEqual(project_2_irr, 0.2765, 3)
+        self.assertAlmostEqual(project_2_mirr, 0.1699, 3)
+        self.assertGreater(project_2_irr, project_1_irr)
+        self.assertGreater(project_1_mirr, project_2_mirr)
