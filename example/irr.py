@@ -11,6 +11,10 @@ multiple_irr = IRR(
 irr = multiple_irr.find(initial_guess=0.05)
 print(f"Internal Rate of Return (IRR) = {irr}")
 
+# find modified irr
+mirr = multiple_irr.find(initial_guess=0.05)
+print(f"Internal Rate of Return (MIRR) = {mirr}")
+
 # find all irr
 irrs = multiple_irr.find_all([0.05,1])
 print(f"All Internal Rate of Return (IRR) = {irrs}")
