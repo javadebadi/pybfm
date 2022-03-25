@@ -1,8 +1,21 @@
 """Module for each item in balance sheet
 """
 
-from .balance_sheet_main_group import BalanceSheetMainGroup
-from .balance_sheet_submain_group import BalanceSheetSubMainGroup
+from .balance_sheet_main_group import (
+    ASSET,
+    EQUITY,
+    LIABILITY,
+    BalanceSheetMainGroup,
+    )
+from .balance_sheet_submain_group import (
+    LONG_TERM_ASSET,
+    LONG_TERM_LIABILITY,
+    OWNERS_EQUITY,
+    SHORT_TERM_ASSET,
+    SHORT_TERM_LIABILITY,
+    BalanceSheetSubMainGroup,
+    )
+
 
 class BalanceSheetItem:
     """Class to represent each balance sheet item in accounting.
@@ -73,3 +86,27 @@ class BalanceSheetItem:
               f"{self.balance_sheet_sub_main_group.to_csv(depth=depth-1)}"\
               + end
         return csv
+
+    def is_main_asset(self):
+        return self.balance_sheet_main_group == ASSET
+
+    def is_main_liability(self):
+        return self.balance_sheet_main_group == LIABILITY
+
+    def is_main_equity(self):
+        return self.balance_sheet_main_group == EQUITY
+
+    def is_short_term_asset(self):
+        return self.balance_sheet_sub_main_group == SHORT_TERM_ASSET
+
+    def is_long_term_asset(self):
+        return self.balance_sheet_sub_main_group == LONG_TERM_ASSET
+
+    def is_short_term_liability(self):
+        return self.balance_sheet_sub_main_group == SHORT_TERM_LIABILITY
+
+    def is_long_term_liability(self):
+        return self.balance_sheet_sub_main_group == LONG_TERM_LIABILITY
+
+    def is_equity(self):
+        return self.balance_sheet_sub_main_group == OWNERS_EQUITY

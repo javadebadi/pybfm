@@ -32,6 +32,9 @@ class BalanceSheetMainGroup:
         else:
             return f"{self.id},{self.name}" + end
 
+    def __eq__(self, other) -> bool:
+        return self.id == other.id
+
 
 # Balance Sheet Main Group Objects
 ASSET = BalanceSheetMainGroup(id=1, name='Asset')

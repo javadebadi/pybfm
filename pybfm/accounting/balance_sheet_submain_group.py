@@ -66,7 +66,6 @@ class BalanceSheetSubMainGroup:
                f"{self.balance_sheet_main_group.to_csv(depth=depth-1)}"\
                + end
 
-
 # Balance Sheet Sub Main Group Objects
 
 SHORT_TERM_ASSET = BalanceSheetSubMainGroup(
