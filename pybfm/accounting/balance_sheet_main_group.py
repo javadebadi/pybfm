@@ -1,3 +1,5 @@
+"""Module for main group of items in Balance Sheet
+"""
 class BalanceSheetMainGroup:
     """
     Class to determine Balance Sheet Group.
