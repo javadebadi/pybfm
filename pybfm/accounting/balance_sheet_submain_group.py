@@ -6,7 +6,6 @@ from .balance_sheet_main_group import (
     ASSET,
     LIABILITY,
     EQUITY,
-    BALANCE_SHEET_MAIN_GROUP_OBJECTS,
 )
 
 
@@ -62,9 +61,12 @@ class BalanceSheetSubMainGroup:
     def to_csv(self, depth=0, end="") -> str:
         """Returns comma separated value representation.
         """
-        return f"{self.id},{self.name},"\
-               f"{self.balance_sheet_main_group.to_csv(depth=depth-1)}"\
-               + end
+        if depth < 0:
+            return "" + end
+        deep_part = f"{self.balance_sheet_main_group.to_csv(depth=depth-1)}"
+        if deep_part:
+            deep_part = ',' + deep_part
+        return f"{self.id},{self.name}" + deep_part + end
 
 # Balance Sheet Sub Main Group Objects
 
@@ -81,19 +83,19 @@ LONG_TERM_ASSET = BalanceSheetSubMainGroup(
 )
 
 SHORT_TERM_LIABILITY = BalanceSheetSubMainGroup(
-    id=3,
+    id=11,
     name='Short Term Liability',
     balance_sheet_main_group=LIABILITY,
 )
 
 LONG_TERM_LIABILITY = BalanceSheetSubMainGroup(
-    id=4,
+    id=12,
     name='Long Term Liability',
     balance_sheet_main_group=LIABILITY,
 )
 
 OWNERS_EQUITY = BalanceSheetSubMainGroup(
-    id=5,
-    name='Owners\'s Equity',
+    id=21,
+    name='Owner\'s Equity',
     balance_sheet_main_group=EQUITY,
 )
