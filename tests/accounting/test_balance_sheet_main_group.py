@@ -15,7 +15,12 @@ class BalanceSheetMainGroupTest(TestCase):
         b = BalanceSheetMainGroup(id=1, name='Asset')
         self.assertEqual(b.name, 'Asset')
         self.assertEqual(b.id, 1)
-        self.assertEqual(b.to_csv(), '1,Asset')
+        self.assertEqual(b.to_csv(1), '1,Asset')
+        self.assertEqual(b.to_csv(0), '1,Asset')
+        self.assertEqual(b.to_csv(-1), '')
+    
+    
+class BalanceSheetMainGroupObjectsTest(TestCase):
 
     def test_object_ASSET(self):
         self.assertEqual(ASSET.id, 1)
@@ -33,5 +38,3 @@ class BalanceSheetMainGroupTest(TestCase):
         self.assertEqual(BALANCE_SHEET_MAIN_GROUP_OBJECTS[0], ASSET)
         self.assertEqual(BALANCE_SHEET_MAIN_GROUP_OBJECTS[1], LIABILITY)
         self.assertEqual(BALANCE_SHEET_MAIN_GROUP_OBJECTS[2], EQUITY)
-    
-    

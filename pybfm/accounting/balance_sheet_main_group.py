@@ -27,8 +27,8 @@ class BalanceSheetMainGroup:
 
     def to_csv(self, depth=0, end=""):
         assert type(depth) == int
-        if depth <= 0:
-            return f"{self.id},{self.name}" + end
+        if depth < 0:
+            return "" + end
         else:
             return f"{self.id},{self.name}" + end
 
