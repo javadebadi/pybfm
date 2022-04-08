@@ -18,3 +18,10 @@ CASH = BalanceSheetItem(
     'Cash available',
     SHORT_TERM_ASSET,
 )
+
+ACCOUNTS_RECEIVABLE = BalanceSheetItem(
+    '101-0000000002',
+    'Accounts Receivable',
+    'Accounts receivable (AR) is the balance of money due to a firm for goods or services delivered or used but not yet paid for by customer',
+    SHORT_TERM_ASSET,
+)
