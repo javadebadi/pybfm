@@ -25,3 +25,10 @@ ACCOUNTS_RECEIVABLE = BalanceSheetItem(
     'Accounts receivable (AR) is the balance of money due to a firm for goods or services delivered or used but not yet paid for by customer',
     SHORT_TERM_ASSET,
 )
+
+ALLOWANCE_FOR_BAD_DEBTS = BalanceSheetItem(
+    '101-0000000003',
+    'Allowance for Bad Debts',
+    'An allowance for bad debt is a valuation account used to estimate the amount of a firm\'s receivables that may ultimately be uncollectible.',
+    SHORT_TERM_ASSET,
+)
