@@ -32,3 +32,10 @@ ALLOWANCE_FOR_BAD_DEBTS = BalanceSheetItem(
     'An allowance for bad debt is a valuation account used to estimate the amount of a firm\'s receivables that may ultimately be uncollectible.',
     SHORT_TERM_ASSET,
 )
+
+INVENTORY = BalanceSheetItem(
+    '101-0000000004',
+    'Inventory',
+    'Inventory is the raw materials used to produce goods as well as the goods that are available for sale. The three types of inventory include raw materials, work-in-progress, and finished goods.',
+    SHORT_TERM_ASSET,
+)
