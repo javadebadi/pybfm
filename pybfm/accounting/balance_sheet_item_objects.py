@@ -39,3 +39,11 @@ INVENTORY = BalanceSheetItem(
     'Inventory is the raw materials used to produce goods as well as the goods that are available for sale. The three types of inventory include raw materials, work-in-progress, and finished goods.',
     SHORT_TERM_ASSET,
 )
+
+
+SHORT_PREPAID_INSURANCE = BalanceSheetItem(
+    '101-0000000005',
+    'Prepaid Insurance',
+    'A prepaid expense is carried on an insurance company\'s balance sheet as a current asset until it is consumed.',
+    SHORT_TERM_ASSET,
+)
