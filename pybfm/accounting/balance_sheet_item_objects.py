@@ -40,10 +40,23 @@ INVENTORY = BalanceSheetItem(
     SHORT_TERM_ASSET,
 )
 
-
 SHORT_PREPAID_INSURANCE = BalanceSheetItem(
     '101-0000000005',
     'Prepaid Insurance',
     'A prepaid expense is carried on an insurance company\'s balance sheet as a current asset until it is consumed.',
     SHORT_TERM_ASSET,
+)
+
+TRUCK = BalanceSheetItem(
+    '102-0000000001',
+    'Truck',
+    'Trucks',
+    LONG_TERM_ASSET,
+)
+
+LAND = BalanceSheetItem(
+    '102-0000000002',
+    'Land',
+    'Land',
+    LONG_TERM_ASSET,
 )
