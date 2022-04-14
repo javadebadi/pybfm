@@ -60,3 +60,10 @@ LAND = BalanceSheetItem(
     'Land',
     LONG_TERM_ASSET,
 )
+
+BUILDING = BalanceSheetItem(
+    '102-0000000003',
+    'Building',
+    'Building',
+    LONG_TERM_ASSET,
+)
