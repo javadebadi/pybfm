@@ -67,3 +67,10 @@ BUILDING = BalanceSheetItem(
     'Building',
     LONG_TERM_ASSET,
 )
+
+PREPAID_INSURANCE = BalanceSheetItem(
+    '101-0000000004',
+    'Prepaid Insurance',
+    'A prepaid expense is carried on an insurance company\'s balance sheet as a current asset until it is consumed.',
+    LONG_TERM_ASSET,
+)
