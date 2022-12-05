@@ -6,6 +6,7 @@ from pybfm.accounting.balance_sheet_main_group import (
     LIABILITY,
     EQUITY,
     BALANCE_SHEET_MAIN_GROUP_OBJECTS,
+    BalanceSheetMainGroupObjects,
     )
 
 
@@ -20,7 +21,7 @@ class BalanceSheetMainGroupTest(TestCase):
         self.assertEqual(b.to_csv(-1), '')
     
     
-class BalanceSheetMainGroupObjectsTest(TestCase):
+class BalanceSheetMainGroupObjectsIndividualTest(TestCase):
 
     def test_object_ASSET(self):
         self.assertEqual(ASSET.id, 1)
@@ -38,3 +39,15 @@ class BalanceSheetMainGroupObjectsTest(TestCase):
         self.assertEqual(BALANCE_SHEET_MAIN_GROUP_OBJECTS[0], ASSET)
         self.assertEqual(BALANCE_SHEET_MAIN_GROUP_OBJECTS[1], LIABILITY)
         self.assertEqual(BALANCE_SHEET_MAIN_GROUP_OBJECTS[2], EQUITY)
+
+
+class BalanceSheetMainGroupObjectsTest(TestCase):
+
+    def test_attribute_ASSET(self):
+        self.assertIs(BalanceSheetMainGroupObjects.ASSET, ASSET)
+
+    def test_attribute_LIABILITY(self):
+        self.assertIs(BalanceSheetMainGroupObjects.LIABILITY, LIABILITY)
+
+    def test_attribute_EQUITY(self):
+        self.assertIs(BalanceSheetMainGroupObjects.EQUITY, EQUITY)

@@ -1,5 +1,14 @@
-"""Module for main group of items in Balance Sheet
 """
+Module for main group of items in Balance Sheet.
+
+There are Three main groups in a balance sheet:
+
+    - Asset
+    - Liability
+    - Equity
+"""
+
+
 class BalanceSheetMainGroup:
     """
     Class to determine Balance Sheet Group.
@@ -9,6 +18,9 @@ class BalanceSheetMainGroup:
     - Liability
     - Equity
 
+    Example
+    -------
+    ASSET = BalanceSheetMainGroup(id=1, name="Asset")
     """
 
     def __init__(
@@ -26,6 +38,29 @@ class BalanceSheetMainGroup:
         return f"BalanceSheetMainGroup(id={self.id}, name={self.name})"
 
     def to_csv(self, depth=0, end=""):
+        """Returns a string which can be used to generated csv files.
+
+        Parameters
+        ----------
+        depth : int
+            If non-negative will return information of BalanceSheetMainGroup 
+            object as string. Else, empty string will be returned.
+        end : str
+            Determines the string to append at the end of the 
+
+        
+        Example
+        -------
+        >> bsmg = BalanceSheetMainGroup(id=1, name="Asset")
+        >>> bsmg.to_csv()
+        '1,Asset'
+        >>> bsmg.to_csv(-1)
+        ''
+        >>> bsmg.to_csv(end="\n")
+        >>>
+        '1,Asset
+        '
+        """
         assert type(depth) == int
         if depth < 0:
             return "" + end
@@ -37,12 +72,38 @@ class BalanceSheetMainGroup:
 
 
 # Balance Sheet Main Group Objects
-ASSET = BalanceSheetMainGroup(id=1, name='Asset')
-LIABILITY = BalanceSheetMainGroup(id=2, name='Liability')
-EQUITY = BalanceSheetMainGroup(id=3, name='Equity')
+ASSET = BalanceSheetMainGroup(
+    id=1,
+    name='Asset',
+    )
+LIABILITY = BalanceSheetMainGroup(
+    id=2,
+    name='Liability',
+    )
+EQUITY = BalanceSheetMainGroup(
+    id=3,
+    name='Equity',
+    )
 
 BALANCE_SHEET_MAIN_GROUP_OBJECTS = [
     ASSET,
     LIABILITY,
     EQUITY,
 ]
+
+
+class BalanceSheetMainGroupObjects:
+
+    """Class with class level attributes which contains
+    standard balance sheet main group objects.
+
+    Attributes
+    ----------
+    ASSET : BalanceSheetMainGroup
+    LIABILITY : BalanceSheetMainGroup
+    EQUITY : BalanceSheetMainGroup
+    """
+
+    ASSET = ASSET
+    LIABILITY = LIABILITY
+    EQUITY = EQUITY
