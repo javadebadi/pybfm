@@ -15,6 +15,7 @@ from pybfm.accounting.balance_sheet_submain_group import (
     LONG_TERM_LIABILITY,
     OWNERS_EQUITY,
 )
+from pybfm.accounting.balance_sheet_submain_group import BalanceSheetSubMainGroupObjects as BSSubMain
 
 
 class BalanceSheetSubMainGroupTest(TestCase):
@@ -33,7 +34,8 @@ class BalanceSheetSubMainGroupTest(TestCase):
         self.assertEqual(b.to_csv(depth=1), '1,Short Term Asset,1,Asset')
         self.assertEqual(b.to_csv(depth=2), '1,Short Term Asset,1,Asset')
 
-class BalanceSheetSubMainGroupObjectsTest(TestCase):
+
+class BalanceSheetSubMainGroupObjectsIndividualTest(TestCase):
 
     def test_object_SHORT_TERM_ASSET(self):
         self.assertEqual(SHORT_TERM_ASSET.id, 1)
@@ -60,3 +62,20 @@ class BalanceSheetSubMainGroupObjectsTest(TestCase):
         self.assertEqual(OWNERS_EQUITY.name, 'Owner\'s Equity')
         self.assertEqual(OWNERS_EQUITY.balance_sheet_main_group, EQUITY)
 
+
+class BalanceSheetSubMainGroupObjectsTest(TestCase):
+
+    def test_attribute_SHORT_TERM_ASSET(self):
+        self.assertIs(BSSubMain.SHORT_TERM_ASSET, SHORT_TERM_ASSET)
+
+    def test_attribute_LONG_TERM_ASSET(self):
+        self.assertIs(BSSubMain.LONG_TERM_ASSET, LONG_TERM_ASSET)
+
+    def test_attribute_SHORT_TERM_LIABILITY(self):
+        self.assertIs(BSSubMain.SHORT_TERM_LIABILITY, SHORT_TERM_LIABILITY)
+
+    def test_attribute_LONG_TERM_LIABILITY(self):
+        self.assertIs(BSSubMain.LONG_TERM_LIABILITY, LONG_TERM_LIABILITY)
+
+    def test_attribute_OWNERS_EQUITY(self):
+        self.assertIs(BSSubMain.OWNERS_EQUITY, OWNERS_EQUITY)

@@ -7,6 +7,7 @@ There are Three main groups in a balance sheet:
     - Liability
     - Equity
 """
+from .exception import BalanceSheetMainGroupException
 
 
 class BalanceSheetMainGroup:
@@ -20,7 +21,7 @@ class BalanceSheetMainGroup:
 
     Example
     -------
-    ASSET = BalanceSheetMainGroup(id=1, name="Asset")
+    >>> ASSET = BalanceSheetMainGroup(id=1, name="Asset")
     """
 
     def __init__(
@@ -30,6 +31,49 @@ class BalanceSheetMainGroup:
         ) -> None:
         self.id = id
         self.name = name
+
+    # < =============== Attribute => id ==================== >
+    # setter, getter and validator for id property
+    @property
+    def id(self) -> int:
+        return self._id
+
+    def _validate_id(self, id: int):
+        try:
+            assert type(id) == int
+        except TypeError:
+            raise BalanceSheetMainGroupException(
+                f"{self.__class__.__name__} with id = '{id}' couldn't be"
+                f" initialized. The `id` attribute must be of type 'int'."
+            )
+
+    @id.setter
+    def id(self, id: int) -> None:
+        self._validate_id(id)
+        self._id = id
+    # </ =============== Attribute => id ==================== >
+
+    # < =============== Attribute => name ==================== >
+    # setter, getter and validator for name property
+    @property
+    def name(self) -> int:
+        return self._name
+
+    def _validate_name(self, name: int):
+        try:
+            assert type(name) == str
+        except TypeError:
+            raise BalanceSheetMainGroupException(
+                f"{self.__class__.__name__} with name of type '{type(name)}'"
+                "couldn't be initialized."
+                "The `name` attribute must be of type 'str'."
+            )
+
+    @name.setter
+    def name(self, name: int) -> None:
+        self._validate_name(name)
+        self._name = name
+    # </ =============== Attribute => name ==================== >
 
     def __str__(self) -> str:
         return self.name

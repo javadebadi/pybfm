@@ -2,3 +2,6 @@
 """
 
 class AccountingError(Exception): pass
+
+
+class BalanceSheetMainGroupException(AccountingError): pass

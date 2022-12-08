@@ -1,13 +1,10 @@
-"""Module for sub main group of Items in Balance Sheet
+"""Module for sub main group of items in Balance Sheet
 """
 
 from .balance_sheet_main_group import (
     BalanceSheetMainGroup,
-    ASSET,
-    LIABILITY,
-    EQUITY,
 )
-
+from .balance_sheet_main_group import BalanceSheetMainGroupObjects as BSMain
 
 class BalanceSheetSubMainGroup:
     """
@@ -73,29 +70,50 @@ class BalanceSheetSubMainGroup:
 SHORT_TERM_ASSET = BalanceSheetSubMainGroup(
     id=1,
     name='Short Term Asset',
-    balance_sheet_main_group=ASSET,
+    balance_sheet_main_group=BSMain.ASSET,
 )
 
 LONG_TERM_ASSET = BalanceSheetSubMainGroup(
     id=2,
     name='Long Term Asset',
-    balance_sheet_main_group=ASSET,
+    balance_sheet_main_group=BSMain.ASSET,
 )
 
 SHORT_TERM_LIABILITY = BalanceSheetSubMainGroup(
     id=11,
     name='Short Term Liability',
-    balance_sheet_main_group=LIABILITY,
+    balance_sheet_main_group=BSMain.LIABILITY,
 )
 
 LONG_TERM_LIABILITY = BalanceSheetSubMainGroup(
     id=12,
     name='Long Term Liability',
-    balance_sheet_main_group=LIABILITY,
+    balance_sheet_main_group=BSMain.LIABILITY,
 )
 
 OWNERS_EQUITY = BalanceSheetSubMainGroup(
     id=21,
     name='Owner\'s Equity',
-    balance_sheet_main_group=EQUITY,
+    balance_sheet_main_group=BSMain.EQUITY,
 )
+
+
+class BalanceSheetSubMainGroupObjects:
+
+    """Class with class level attributes which contains
+    standard balance sheet submain group objects.
+
+    Attributes
+    ----------
+    SHORT_TERM_ASSET : BalanceSheetSubMainGroup
+    LONG_TERM_ASSET : BalanceSheetSubMainGroup
+    SHORT_TERM_LIABILITY : BalanceSheetSubMainGroup
+    LONG_TERM_LIABILITY : BalanceSheetSubMainGroup
+    OWNERS_EQUITY : BalanceSheetSubMainGroup
+    """
+
+    SHORT_TERM_ASSET = SHORT_TERM_ASSET
+    LONG_TERM_ASSET = LONG_TERM_ASSET
+    SHORT_TERM_LIABILITY = SHORT_TERM_LIABILITY
+    LONG_TERM_LIABILITY = LONG_TERM_LIABILITY
+    OWNERS_EQUITY = OWNERS_EQUITY
