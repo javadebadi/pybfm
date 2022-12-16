@@ -2,19 +2,13 @@
 """
 
 from .balance_sheet_main_group import (
-    ASSET,
-    EQUITY,
-    LIABILITY,
     BalanceSheetMainGroup,
     )
 from .balance_sheet_submain_group import (
-    LONG_TERM_ASSET,
-    LONG_TERM_LIABILITY,
-    OWNERS_EQUITY,
-    SHORT_TERM_ASSET,
-    SHORT_TERM_LIABILITY,
     BalanceSheetSubMainGroup,
     )
+from .balance_sheet_submain_group import BalanceSheetSubMainGroupObjects as BSSubMain
+from .balance_sheet_main_group import BalanceSheetMainGroupObjects as BSMain
 
 
 class BalanceSheetItem:
@@ -77,36 +71,48 @@ class BalanceSheetItem:
     def balance_sheet_main_group(self):
         return self._balance_sheet_sub_main_group.balance_sheet_main_group
 
+    @property
+    def bsmain(self):
+        return self.balance_sheet_main_group
+
+    @property
+    def bssubmain(self):
+        return self.balance_sheet_sub_main_group
+
     def __str__(self):
         return str(self.ID) + ' - ' + self.name
 
     def to_csv(self, depth: int = 0, end: str = "\n"):
         assert type(end) == str
-        csv = f"{self.ID},{self.name},{self.origin},"\
-              f"{self.balance_sheet_sub_main_group.to_csv(depth=depth-1)}"\
-              + end
+        csv = ""
+        if depth >= 0:
+            csv += f"{self.ID},{self.name},{self.origin}"
+        if depth >=1:
+            csv += ","
+            csv += f"{self.balance_sheet_sub_main_group.to_csv(depth=depth-1)}"
+        csv += end
         return csv
 
     def is_main_asset(self):
-        return self.balance_sheet_main_group == ASSET
+        return self.bsmain is BSMain.ASSET
 
     def is_main_liability(self):
-        return self.balance_sheet_main_group == LIABILITY
+        return self.bsmain is BSMain.LIABILITY
 
     def is_main_equity(self):
-        return self.balance_sheet_main_group == EQUITY
+        return self.bsmain is BSMain.EQUITY
 
     def is_short_term_asset(self):
-        return self.balance_sheet_sub_main_group == SHORT_TERM_ASSET
+        return self.bssubmain is BSSubMain.SHORT_TERM_ASSET
 
     def is_long_term_asset(self):
-        return self.balance_sheet_sub_main_group == LONG_TERM_ASSET
+        return self.bssubmain is BSSubMain.LONG_TERM_ASSET
 
     def is_short_term_liability(self):
-        return self.balance_sheet_sub_main_group == SHORT_TERM_LIABILITY
+        return self.bssubmain is BSSubMain.SHORT_TERM_LIABILITY
 
     def is_long_term_liability(self):
-        return self.balance_sheet_sub_main_group == LONG_TERM_LIABILITY
+        return self.bssubmain is BSSubMain.LONG_TERM_LIABILITY
 
     def is_equity(self):
-        return self.balance_sheet_sub_main_group == OWNERS_EQUITY
+        return self.bssubmain is BSSubMain.OWNERS_EQUITY
